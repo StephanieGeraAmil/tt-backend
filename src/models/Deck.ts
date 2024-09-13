@@ -1,5 +1,6 @@
-import { Table, Column, Model, DataType, HasMany } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, HasMany, ForeignKey, BelongsTo } from 'sequelize-typescript';
 import Card from './Card'; 
+import User from './User'; 
 
 @Table({ tableName: 'Decks', timestamps: true })
 class Deck extends Model {
@@ -16,14 +17,22 @@ class Deck extends Model {
   })
   public name!: string;
 
-//   @Column({
-//     type: DataType.STRING,
-//     allowNull: true,
-//   })
-//   public description!: string;
+
 
   @HasMany(() => Card) // Association with Card model
   public cards!: Card[];
+
+  // Foreign key reference to User model
+  @ForeignKey(() => User)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: false, 
+  })
+  public userId!: number; 
+
+  
+  @BelongsTo(() => User)
+  public user!: User;
 
 }
 

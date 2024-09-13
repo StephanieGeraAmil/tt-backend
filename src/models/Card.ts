@@ -10,12 +10,6 @@ class Card extends Model {
   })
   public id!: number;
 
-  // @Column({
-  //   type: DataType.STRING,
-  //   allowNull: false,
-  // })
-  // public title!: string;
-
   @Column({
     type: DataType.TEXT,
     allowNull: true,
