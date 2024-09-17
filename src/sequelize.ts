@@ -11,7 +11,7 @@ import Note from './models/Note';
 
 config(); 
 
-const sequelize = new Sequelize(process.env.DEV_DATABASE_URL as string, {
+const sequelize = new Sequelize(process.env.DATABASE_URL as string, {
   dialect: 'postgres',
   dialectOptions: {
     ssl: {
