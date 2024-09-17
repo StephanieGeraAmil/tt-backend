@@ -17,19 +17,15 @@ class Deck extends Model {
   })
   public name!: string;
 
-
-
-  @HasMany(() => Card) // Association with Card model
+  @HasMany(() => Card) 
   public cards!: Card[];
 
-  // Foreign key reference to User model
   @ForeignKey(() => User)
   @Column({
     type: DataType.INTEGER,
     allowNull: false, 
   })
   public userId!: number; 
-
   
   @BelongsTo(() => User)
   public user!: User;

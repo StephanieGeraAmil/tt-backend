@@ -1,5 +1,7 @@
-import { Table, Column, Model, DataType, ForeignKey } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, ForeignKey, HasMany, HasOne } from 'sequelize-typescript';
 import Deck from './Deck';
+import Verse from './Verse';
+import Note from './Note';
 
 @Table({ tableName: 'Cards', timestamps: true })
 class Card extends Model {
@@ -11,17 +13,24 @@ class Card extends Model {
   public id!: number;
 
   @Column({
-    type: DataType.TEXT,
-    allowNull: true,
+    type: DataType.INTEGER,
+    allowNull: false,
   })
-  public content!: string;
+  public order!: number;
 
-  @ForeignKey(() => Deck) 
+
+  @ForeignKey(() => Deck)
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
   })
   public deckId!: number;
+
+  @HasOne(() => Verse, { foreignKey: 'cardId', onDelete: 'CASCADE' })
+  public verse!: Verse;
+
+  @HasOne(() => Note, { foreignKey: 'cardId', onDelete: 'CASCADE' })
+  public note!: Note;
 }
 
 export default Card;

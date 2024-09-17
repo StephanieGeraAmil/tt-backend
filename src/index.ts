@@ -1,6 +1,10 @@
 import express from 'express';
 import { config } from 'dotenv';
 import deckRoutes from './routes/decks';
+import cardRoutes from './routes/cards';
+import userRoutes from './routes/users';
+import verseRoutes from './routes/verses';
+import noteRoutes from './routes/notes';
 import { sequelize } from './sequelize'; 
 // import cardRoutes from './routes/cards';
 
@@ -26,7 +30,10 @@ sequelize.authenticate()
 
 // Routes
 app.use('/decks', deckRoutes);
-// app.use('/cards', cardRoutes);
+app.use('/cards', cardRoutes);
+app.use('/users', userRoutes);
+app.use('/verses', verseRoutes);
+app.use('/notes', noteRoutes);
 
 
 // Start server

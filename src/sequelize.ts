@@ -1,8 +1,11 @@
 import { Sequelize } from 'sequelize-typescript';
 import { config } from 'dotenv';
 //import path from 'path';
-import Deck from './models/Deck';
+import User from './models/User';  
+import Deck from './models/Deck';  
 import Card from './models/Card';
+import Verse from './models/Verse';
+import Note from './models/Note';
 
 
 
@@ -17,7 +20,7 @@ const sequelize = new Sequelize(process.env.DEV_DATABASE_URL as string, {
     }
   },
  // models: [path.join(__dirname, 'models')],
- models: [Deck, Card], 
+ models: [User, Deck, Card, Verse, Note],
 });
 
 export { sequelize };
