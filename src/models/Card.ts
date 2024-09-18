@@ -1,4 +1,4 @@
-import { Table, Column, Model, DataType, ForeignKey, HasMany, HasOne } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, ForeignKey, HasMany, HasOne, BelongsTo } from 'sequelize-typescript';
 import Deck from './Deck';
 import Verse from './Verse';
 import Note from './Note';
@@ -25,6 +25,8 @@ class Card extends Model {
     allowNull: false,
   })
   public deckId!: number;
+  @BelongsTo(() => Deck, { onDelete: 'CASCADE' })
+  public deck!: Deck;
 
   @HasOne(() => Verse, { foreignKey: 'cardId', onDelete: 'CASCADE' })
   public verse!: Verse;

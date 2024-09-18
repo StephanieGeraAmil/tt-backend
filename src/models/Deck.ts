@@ -27,7 +27,7 @@ class Deck extends Model {
   })
   public userId!: number; 
   
-  @BelongsTo(() => User)
+  @BelongsTo(() => User, { onDelete: 'CASCADE' })
   public user!: User;
 
 }

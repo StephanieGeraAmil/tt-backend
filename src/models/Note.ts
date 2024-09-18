@@ -23,7 +23,7 @@ class Note extends Model {
   })
   public cardId!: number;
 
-  @BelongsTo(() => Card) 
+  @BelongsTo(() => Card, { onDelete: 'CASCADE' })
   public card!: Card;
 }
 
