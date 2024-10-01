@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import { config } from 'dotenv';
 import deckRoutes from './routes/decks';
 import cardRoutes from './routes/cards';
@@ -11,6 +12,12 @@ import { sequelize } from './sequelize';
 config(); // Load environment variables
 
 const app = express();
+app.use(cors({
+  origin: 'http://localhost:3000',  
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,  
+}));
 
 app.use(express.json());  
 
